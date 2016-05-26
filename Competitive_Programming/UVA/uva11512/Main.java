@@ -10,6 +10,12 @@ class Main
 	{
 
 	}
+
+	public class Trie
+	{
+
+
+	}
 	public void run(String args[]) throws Exception
 	{
 		Scanner scanner = new Scanner(new FileInputStream(args[0]));
@@ -22,7 +28,7 @@ class Main
 			String next = scanner.next();
 			arr[numTest-copyNumTest] = next; 
 		}
-
+		
 	}
 
 	public static void main(String args[]) throws Exception
