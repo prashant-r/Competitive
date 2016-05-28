@@ -4,7 +4,7 @@ import java.util.*;
 import java.math.*;
 import java.text.*;
 
-// Not tested on UVA
+// Accepted on UVA :)
 class Main
 {
 
@@ -30,6 +30,7 @@ public void run(String args[]) throws Exception
    		s = input.nextInt();
    		t = input.nextInt();
    		u = input.nextInt();
+   		input.nextLine();
 
    		double low = 0.0f;
 		double high = 1.0f;
