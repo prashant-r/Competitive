@@ -10,11 +10,6 @@ LOT
 S
 PT
 
-1
-Q
-Q
-X
-
 50
 The contest will be held on Saturday, October  30,
 1993.    Contestants  will  have a  period of five
@@ -71,6 +66,11 @@ inputfromthesamediskthatcontainstheprogram
 inputfromthesamediskthatcontainstheprogramabcdefgh
 vidy
 
+1
+Q
+Q
+X
+
 5
 A   B
     *
@@ -90,6 +90,3 @@ DA
 DC
 DB
 B
-
-
-

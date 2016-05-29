@@ -3,7 +3,7 @@ import java.util.*;
 import java.math.*;
 import java.lang.*;
 
-
+// Accepted on UVA :)
 class Main
 {
 	public Main()
@@ -35,7 +35,6 @@ class Main
 		needToCheck.add(new Pair(1,-1, "SW"));
 		needToCheck.add(new Pair(0,-1,"W"));
 		needToCheck.add(new Pair(-1,-1, "NW"));
-		matrix = new char[10000][10000];
 		Scanner scanner = new Scanner(System.in);
 		out = new PrintWriter(System.out, true);
 		int testCases = scanner.nextInt();
@@ -44,11 +43,11 @@ class Main
 		scanner.nextLine();
 		int numberRows = scanner.nextInt();
 		scanner.nextLine();
-		
+		matrix = new char[700][700];
 		while(copyTestCases-- >0)
 		{
 			int rowNum = 0;	
-			matrix = new char[10000][10000];
+			
 			while(numberRows-- > 0)
 			{
 				String row = scanner.nextLine();
@@ -69,6 +68,7 @@ class Main
 				query = query.trim();
 				if(isNumber(query))
 				{
+					out.println();
 					numberRows = Integer.parseInt(query);
 					break;
 				}
@@ -78,7 +78,6 @@ class Main
 				}
 				runQuery(query);
 			}
-			out.println();
 		}	
 	}
 
@@ -93,28 +92,26 @@ class Main
 		out.println();
 		out.println(query);
 		boolean t = false;
-		System.out.println("not found");
-		return;
-		// for (int i = 0; i < rowLength; i++) {
-  //              for (int j = 0; j < colLength; j++) {
-  //             		 	x =i;
-  //              			y =j;
+		for (int i = 0; i < rowLength; i++) {
+               for (int j = 0; j < colLength; j++) {
+              		 	x =i;
+               			y =j;
                         
-  //              			for(Pair check: needToCheck)
-  //                       {
-  //                       	if (check(check, query))
-  //                       	{
-  //                       		out.printf("(%d,%d) - %s%n", x+1, y+1, check.direction);
-  //                              	t = true;
-  //                       	}
-  //                       }
-  //                   }
+               			for(Pair check: needToCheck)
+                        {
+                        	if (check(check, query))
+                        	{
+                        		out.printf("(%d,%d) - %s%n", x+1, y+1, check.direction);
+                               	t = true;
+                        	}
+                        }
+                    }
                    
-  //       }
-  //           if (!t) {
-  //               System.out.println("not found");
-  //           }
-		// return;
+        }
+            if (!t) {
+                System.out.println("not found");
+            }
+		return;
 	}
 	class Pair
 	{
