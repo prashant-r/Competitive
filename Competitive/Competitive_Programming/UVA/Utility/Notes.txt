@@ -1,0 +1,5 @@
+Notes
+
+uva10635 : For this problem, using the generic LCS solution was not sufficient as it ended up in TLE. Rather I had to use the LIS O(nlogk) solution to overcome this. 
+
+uva10739 : Can be solved using either Top Down DP or the Edit Distance. Look at code for additional info.

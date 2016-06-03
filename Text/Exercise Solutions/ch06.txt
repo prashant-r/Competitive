@@ -1,0 +1,4 @@
+-> Exercise 6.5.1.1 : Yes the costs can be different, they can be set to different values depending on the problem.
+-> Exercise 6.5.1.2 : Do it.
+-> Exercise 6.5.1.3 : It will still be O(mn).
+->
