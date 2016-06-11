@@ -4,6 +4,8 @@ import java.text.*;
 import java.math.*;
 import java.util.*;
 
+// Accepted on UVA :)
+
 class Main
 {
 

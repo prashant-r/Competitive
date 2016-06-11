@@ -48,12 +48,12 @@ class Main
 		while(copyNumTestCases-->0)
 		{
 			query = scanner.nextLine();
-			longestRepeatedSubstring();
+			out.println(longestRepeatedSubstring());
 		}
 
 	}
 
-	public void longestRepeatedSubstring()
+	public int longestRepeatedSubstring()
 	{
 		int answer = 0; 
 		query = query + "$";
@@ -61,64 +61,17 @@ class Main
 		constructSuffixArray();
 		constructPhiArray();
 		constructLCPArray();
-		String maxLString = "";
+
 		int maxL = 0 ;
 		for(int a= 0 ; a< n ; a++)
 		{
 			if(LCP[a] > maxL)
 			{
 				maxL = LCP[a];
-				maxLString = query.substring(SA[a], SA[a] + maxL);
 			}
 		}
 		answer = maxL;
-		if(answer == 0)
-			out.println("No repetitions found!");
-		else
-		{	
-			int minMatchSize = 2;
-			TreeMap<String, StringCount> hash= new TreeMap<String,StringCount>();
-			for(int a = 0; a < n ; a++)
-			{
-				if(LCP[a] == maxL)
-				{
-					String maxLS = query.substring(SA[a], SA[a] + maxL);
-					if(hash.containsKey(maxLS))
-					{
-						hash.get(maxLS).count++;
-					}
-					else
-					{
-						StringCount stc = new StringCount(maxLS, minMatchSize);
-						hash.put(maxLS, stc);
-					}
-
-				}
-
-			}
-			String minLexKey = hash.firstKey();
-			out.printf("%s %d\n", minLexKey, hash.get(minLexKey).count);
-
-		}
-	}
-
-	class StringCount implements Comparable<String>
-	{
-		String str; 
-		int count;
-
-		public StringCount(String str, int count)
-		{
-			this.str = str;
-			this.count = count;
-		}
-
-		@Override
-		public int compareTo(String s)
-		{
-			return this.compareTo(s);
-		}
-
+		return answer;
 	}
 
 	public void constructPhiArray()

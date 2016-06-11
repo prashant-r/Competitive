@@ -21,7 +21,7 @@ class Main
 	{
 		Scanner scanner = new Scanner(new FileInputStream(args[0]));
 		out = new PrintWriter(System.out, true);
-		while(true)
+		while(scanner.hasNextLine())
 		{
 		
 		}
