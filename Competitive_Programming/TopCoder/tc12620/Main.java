@@ -2,6 +2,8 @@ import java.io.*;
 import java.math.*;
 import java.util.*;
 
+// Need to complete .. 
+
 class Main
 {
 	
@@ -64,8 +66,7 @@ class Main
 				{
 					if(a.charAt(i+j) == b.charAt(i+j))
 					{
-						
-						
+						out.println("Who");
 					}
 
 				}
