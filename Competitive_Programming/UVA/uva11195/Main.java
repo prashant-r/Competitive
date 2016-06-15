@@ -58,7 +58,6 @@ class Main
 	int answer = 0;
 
 
-
 	public void NQueenSolutions(int rw, int ld, int rd, int level)
 	{
 		if(rw == OK)
