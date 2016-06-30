@@ -139,7 +139,6 @@ class Main
 		int lcCopy = lowestCount;
 		int a= input.length();
 		int b= match.length();
-	//	Stack<Operation> operations = new Stack<Operation>();
 		Pair lastTrace = new Pair(a,b,Verdict.Match);
 		String answer = "";
 		while(!lastTrace.hasConverged())
@@ -152,8 +151,6 @@ class Main
 					answer = "\n" + answer;
 				}
 				answer = String.valueOf(lcCopy--) + " Replace " + String.valueOf(b) + "," + match.charAt(b-1) + answer;
-			//	Operation op = new Operation('C',match.charAt(b-1), b );
-			//	operations.push(op);
 			}
 			else if(lastTrace.verdict == Verdict.Insert)
 			{
@@ -162,8 +159,6 @@ class Main
 					answer = "\n" + answer;
 				}
 				answer = String.valueOf(lcCopy--) + " Insert " + String.valueOf(b) + "," + match.charAt(b-1) + answer; 
-				//Operation op = new Operation('I',match.charAt(b-1), b );
-				//operations.push(op);
 			}
 			else if(lastTrace.verdict == Verdict.Match)
 			{
@@ -176,28 +171,11 @@ class Main
 					answer = "\n" + answer;
 				}
 				answer = String.valueOf(lcCopy--)  + " Delete " + String.valueOf(b+1) + answer;
-			//	Operation op = new Operation('D',input.charAt(a-1), b+1 );
-			//	operations.push(op);
 			}
 			a = lastTrace.x;
 			b = lastTrace.y;
 
 		}
-
-		// List<Operation> toPass = new ArrayList<Operation>();
-		// while(!operations.isEmpty())
-		// {
-		// 	toPass.add(operations.pop());
-		// }
-		// if(!validate(input, toPass, match))
-		// {
-		// //	System.out.println("UH OH");
-		// }
-		// else
-		// {
-		// //	System.out.println("YESSSS");
-		// }
-
 		out.println(String.valueOf(lowestCount));
 		out.println(answer); 
 	}
@@ -209,8 +187,6 @@ class Main
 		String result = new String(start);
 		for(Operation ops : groups)
 		{
-		//	System.out.println();
-		//		System.out.println("Before " + result);
 				char operation = ops.operation;
 				char character = ops.character;
 				int number = ops.number;
@@ -228,12 +204,8 @@ class Main
 				{
 					result = result.substring(0,number-1) + character + result.substring(number-1, result.length());
 				}
-			//	System.out.println(ops);
-			//	System.out.println("After " + result);
+
 		}
-		//System.out.println("Start is " + start);
-		//System.out.println("Result is " + result);
-		//System.out.println("End is " + end);
 		return result.equals(end);
 	}
 
