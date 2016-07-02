@@ -1,20 +1,118 @@
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 import java.math.*;
+
+// Accepted on UVA :)
 
 class Main {
 	public Main() {
 
 	}
 	public static void main(String args[]) throws Exception {
-
+		new Main().run(args);
 	}
 	PrintWriter out;
+	HashMap<String, Vertex> vertexHash = new HashMap<String,Vertex>();
+	SimpleGraph G;
 	public void run(String args[]) throws Exception {
-		Scanner scanner = new Scanner(new FileInputStream(args[0]));
+		Scanner scanner = new Scanner(System.in);
 		out = new PrintWriter(System.out, true);
-		while (scanner.hasNextLine()) {
+		List<String> edgeInformation = new ArrayList<String>();
+		
+		int numTestCases = scanner.nextInt();
+		if (scanner.hasNextLine())
+			scanner.nextLine();
+		while (numTestCases-- > 0) {
 
+			edgeInformation = new ArrayList<String>();
+			vertexHash = new HashMap<String,Vertex>();
+			G = new SimpleGraph();
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if (line.charAt(0) == '*')
+				{	
+					if(scanner.hasNextLine());
+						createVertices(scanner.nextLine());
+					break;
+				}
+				else
+					edgeInformation.add(line);
+			}
+			for(String edgeInfo: edgeInformation)
+				createEdge(edgeInfo);
+			DFS();
+		}
+	}
+	public void DFS()
+	{
+		Stack<Vertex> stack = new Stack<Vertex>();
+		Vertex v, w, a, b, c;
+		Edge e, x, y;
+		Iterator<Vertex> i;
+		HashSet<Vertex> result = new HashSet<Vertex>();
+		for (i = G.vertices(); i.hasNext(); ) {
+			w = (Vertex) i.next();
+			if(!w.activated)
+			{
+				result.add(w);
+				w.connected =1;
+				stack.add(w);
+			}
+			else
+				continue;
+			while(!stack.isEmpty())
+			{
+				Iterator<Edge> j;
+				v = stack.pop();
+				if(v!=w)
+					w.connected+=1;
+				v.activated = true;
+				for (j = G.incidentEdges(v); j.hasNext();) {
+					e = (Edge) j.next();
+				if (e.getFirstEndpoint() == v)
+					if(!e.getSecondEndpoint().activated)
+						stack.add(e.getSecondEndpoint());
+				}
+			}
+		}
+		int trees = 0;
+		int acorns = 0;
+		for(Vertex res : result)
+		{
+			if(res.connected == 1)
+				acorns +=1;
+			else if(res.connected >1)
+				trees +=1;
+		}
+		out.printf("There are %d tree(s) and %d acorn(s).\n", trees, acorns);
+	}
+
+	public void createVertices(String txt)
+	{
+		List<String> elephantList = Arrays.asList(txt.split(","));
+		for(String s: elephantList)
+		{
+			vertexHash.put(s,G.insertVertex(null, s));
+		}
+	}
+
+	public void createEdge(String txt) {
+		String re1 = "(\\()";	// Any Single Character 1
+		String re2 = "(.)";	// Any Single Character 2
+		String re3 = "(,)";	// Any Single Character 3
+		String re4 = "(.)";	// Any Single Character 4
+		String re5 = "(\\))";	// Any Single Character 5
+		Pattern p = Pattern.compile(re1 + re2 + re3 + re4 + re5, Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+		Matcher m = p.matcher(txt);
+		if (m.find()) {
+			String c1 = m.group(1);
+			String c2 = m.group(2);
+			String c3 = m.group(3);
+			String c4 = m.group(4);
+			String c5 = m.group(5);
+			G.insertEdge(vertexHash.get(c2), vertexHash.get(c4), null, c2 + "->" + c4);
+			G.insertEdge(vertexHash.get(c4), vertexHash.get(c2), null, c4 + "->" + c2);
 		}
 	}
 
@@ -165,6 +263,7 @@ class Main {
 			return (int)((double) capacity - (double ) flow );
 		}
 	}
+
 
 	public static class SimpleGraph {
 
@@ -369,9 +468,9 @@ class Main {
 		private int height;
 		public int excess;
 		private int currentResidualOutEdgeCounter;
-		private boolean activated;
+		public boolean activated;
 		public int labelCount [];
-
+		public int connected;
 		/**
 		 * Constructor that allows data and a name to be associated
 		 * with the vertex.
@@ -447,10 +546,8 @@ class Main {
 					edgeList.add(e);
 			}
 			return edgeList;
-		}/**
-
-
-	/**
+		}
+	 /**
 	 * Find and return incoming edges from this vertex in original graph
 	 * @return List<Edge>
 	 */
