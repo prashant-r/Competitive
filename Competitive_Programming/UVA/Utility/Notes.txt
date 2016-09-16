@@ -4,4 +4,12 @@ uva10635 : For this problem, using the generic LCS solution was not sufficient a
 
 uva10739 : Can be solved using either Top Down DP or the Edit Distance. Look at code for additional info.
 
-In general for DP problems try both top down and bottom up approaches before giving up.
+In general for DP problems try both top down and bottom up approaches before giving up. One is easier to formulate over the other sometimes.
+
+Finding articulation points and bridges in directed graphs are tricky. Tarjans' algorithm runs on directed..
+
+We find strongly connected components in a directed graph. Connected components on undirected or directed. Strongly connected just means if there is a path from v to w then there is a path from w to v as well. Also the strongly connected components form a DAG and this is exploited by the Kosaraju's algorithm, although you are more familiar with Tarjans algorithm.
+
+Single shortest path is on directed graphs. The undirected version is really difficul with negative edges.I will only mention that a single shortest path in an undirected graph with negative edges can be computed in O(VE +  V^2logV ) time, by a reduction to maximum weighted matching.
+
+Note that there are harder MST problems that may require more sophisticated algorithm to solve, e.g. Arborescence problem, Steiner tree, degree constrained MST, k-MST, etc.
